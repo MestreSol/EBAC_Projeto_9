@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import lcd from './components/LCD.vue'
-
+import HelloWorld from './components/HelloWorld.vue'
+import LCD from './components/LCD.vue';
+import TheWelcome from './components/TheWelcome.vue'
 </script>
 
 <template>
-  <lcd displayValue="Hello, World!aaaaaaaaaaaaaa" />
-  
+  <LCD> </LCD>
 </template>
 
 <style scoped>
-
 </style>
