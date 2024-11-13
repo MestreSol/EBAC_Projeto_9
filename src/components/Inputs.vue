@@ -2,128 +2,106 @@
 import { ref } from 'vue';
 import LCD from './LCD.vue'; // Importando o componente LCD
 
-let isShift = false;
-let isAlpha = false;
-let isMemory = false;
-let isOn = false;
-let isInsertX = false;
-let isDegree = false;
-let isRadianus = false;
-let isG = false;
-let isFIX = false;
-let isSCI = false;
-let isE = false;
-let isi = false;
-let is45graus = false;
-let isDown = false;
+let conta = ref(''); // Variável reativa para a conta
 
-const lcdDisplay = ref(''); // Variável reativa para o LCD
+const lcdDisplay = ref([]); // Variável reativa para o LCD como uma lista de textos
 
-function Shift() {
-    isShift = !isShift;
-    lcdDisplay.value = `Is Shift: ${isShift}`;
-    console.log(lcdDisplay.value);
+function seven() {
+    conta.value += '7';
+    lcdDisplay.value.push('7');
 }
 
-function Alpha() {
-    isAlpha = !isAlpha;
-    lcdDisplay.value = `Is Alpha: ${isAlpha}`;
-    console.log(lcdDisplay.value);
+function eight() {
+    conta.value += '8';
+    lcdDisplay.value.push('8');
 }
 
-function Menu() {
-    lcdDisplay.value = "Menu displayed on LCD";
-    console.log(lcdDisplay.value);
+function nine() {
+    conta.value += '9';
+    lcdDisplay.value.push('9');
 }
 
-function On() {
-    lcdDisplay.value = "LCD turned on";
-    isOn = !isOn;
-    console.log(lcdDisplay.value);
-
+function four() {
+    conta.value += '4';
+    lcdDisplay.value.push('4');
 }
 
-function Option() {
-    lcdDisplay.value = `1: Função Hiperból
-                        2: Unidade Angular
-                        3: Simb Engenharia`;
-    console.log(lcdDisplay.value);
+function five() {
+    conta.value += '5';
+    lcdDisplay.value.push('5');
 }
 
-function Calc() {
-    lcdDisplay.value = "Calculation mode";
-    console.log(lcdDisplay.value);
+function six() {
+    conta.value += '6';
+    lcdDisplay.value.push('6');
 }
 
-function integral() {
-    lcdDisplay.value = "Integral mode";
-    console.log(lcdDisplay.value);
+function one() {
+    conta.value += '1';
+    lcdDisplay.value.push('1');
 }
 
-function x() {
-    lcdDisplay.value = "Variable x";
-    console.log(lcdDisplay.value);
+function two() {
+    conta.value += '2';
+    lcdDisplay.value.push('2');
 }
+
+function three() {
+    conta.value += '3';
+    lcdDisplay.value.push('3');
+}
+
+function zero() {
+    conta.value += '0';
+    lcdDisplay.value.push('0');
+}
+
+function dot() {
+    conta.value += '.';
+    lcdDisplay.value.push('.');
+}
+
+
+function sum() {
+    conta.value += '+';
+    lcdDisplay.value.push('+');
+}
+
+function sub() {
+    conta.value += '-';
+    lcdDisplay.value.push('-');
+}
+
+function mult() {
+    conta.value += '*';
+    lcdDisplay.value.push('*');
+}
+
+function div() {
+    conta.value += '/';
+    lcdDisplay.value.push('/');
+}
+
+function del() {
+    conta.value = conta.value.slice(0, -1);
+    lcdDisplay.value.pop();
+}
+
+function AC() {
+    conta.value = '';
+    lcdDisplay.value = [];
+}
+
+function equal() {
+    conta.value = eval(conta.value);
+    lcdDisplay.value = [conta.value];
+}
+
 </script>
 
 <template>
-    <div>
-    <ul class="display-tools">
-        <li :class="{active: isShift}" id="Shift">⇑</li>
-        <li :class="{active: isAlpha}" id="Alpha">α</li>
-        <li :class="{active: isMemory}" id="Memory">Θ</li>
-        <li :class="{active: isOn}" id="On">Ο</li>
-        <li :class="{active: isInsertX}" id="insertX">~X</li>
-        <li :class="{active: isDegree}" id="Degree">D</li>
-        <li :class="{active: isRadianus}" id="Radianus">R</li>
-        <li :class="{active: isG}" id="G">G</li>
-        <li :class="{active: isFIX}" id="FIX">FIX</li>
-        <li :class="{active: isSCI}" id="SCI">SCI</li>
-        <li :class="{active: isE}" id="E">E</li>
-        <li :class="{active: isi}" id="i">i</li>
-        <li :class="{active: is45graus}" id="45graus">⋞</li>
-        <li :class="{active: isDown}" id="down">⇓</li>
-    </ul>
-    </div>
     <div class="tela">
-        
-        <LCD :display="lcdDisplay" :class="{enable: isOn}" class="lcd"/> <!-- Passando a string diretamente como propriedade -->
-    </div>
-    <div class="row function">
-        <button @click="Shift">Shift</button>
-        <button @click="Alpha">Alpha</button>
-        <button @click="Menu">Menu</button>
-        <button @click="On">On</button>
-    </div>
-    <div class="row operation">
-        <button @click="Option">Option</button>
-        <button @click="Calc">Calc</button>
-        <button @click="integral">∬</button>
-        <button @click="x">x</button>
-    </div>
-    <div class="row operation">
-        <button @click="diveder">/</button>
-        <button @click="srqt">√</button>
-        <button @click="pow">^</button>
-        <button @click="powx">^x</button>
-        <button @click="log">log</button>
-        <button @click="ln">ln</button>
-    </div>
-    <div class="row operation">
-        <button @click="negative">(-)</button>
-        <button @click="line">° ' "</button>
-        <button @click="pownegative">^-1</button>
-        <button @click="sin">sin</button>
-        <button @click="cos">cos</button>
-        <button @click="tan">tan</button>
-    </div>
-    <div class="row operation">
-        <button @click="sto">STO</button>
-        <button @click="ENG">ENG</button>
-        <button @click="parentes">(</button>
-        <button @click="parentesReverso">)</button>
-        <button @click="SD">S⇹D</button>
-        <button @click="MPlus">M+</button>
+        <LCD :display="lcdDisplay" /> 
     </div>
     <div class="row numeric">
         <button @click="seven">7</button>
@@ -149,8 +127,6 @@ function x() {
         <div class="row numeric">
         <button @click="zero">0</button>
         <button @click="dot">.</button>
-        <button @click="exp">EXP</button>
-        <button @click="ans">ANS</button>
         <button @click="equal">=</button>
         </div>
 </template>
